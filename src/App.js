@@ -1,60 +1,35 @@
-import React, { useState } from 'react'
+import React  from 'react';
+import MyButtonForm from './components/form/MyButtonForm';
+import MyTitle from './components/title/MyTitle';
+import './styles/App.css'
 
-const sum = ((a, b) => (a + b))
 
-const MyComponents = () => {
-  return <div>
-    <h1>Title</h1>
-    <button> Button1 </button>
-    <button> Button2 </button>
-  </div>
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: ''
+    }
+  }
+
+  addTurn = (newTurn) => {
+    const newValue = [...this.state.value, newTurn];
+    if (newValue.length > 3)
+       this.setState({value: newValue.slice(1)});
+    else
+       this.setState({value: newValue});
+  }
+
+
+  render() {
+    return (
+      <>
+        <MyButtonForm addTurn={this.addTurn}/>
+        <MyTitle value={this.state.value} />
+      </>
+    );
+  }
 }
-
-const MyComponents2 = () => {
-  return <div>
-    <ul>
-      <li>Молоко</li>
-      <li>Сахар</li>
-      <li>Мука</li>
-    </ul>
-    <button> Button3 </button>
-  </div>
-}
-
-const posts = {
-  name: "Посты", 
-  title: 'Нажать' 
-};
-
-const PostsComponent = () => {
-  return <div>
-    <h1>{posts.name}</h1>
-    <button> {posts.title} </button>
-  </div>
-}
-
-const ports = [
-  { title: 'Javacript'},
-  { title: 'React'},
-  { title: 'Vue' },
-]
-
-
-
-//{sum(2, 3)}
-//{sum(0.1, 0.2)}
-//<MyComponents/>
-//<MyComponents2/>
-//<PostsComponent/>
-//{ports.map(port => port.title)}
-
-function App() {
-
-  return (
-    <div className="App">
-      {ports.map(port => port.title)}
-    </div>
-  );
-}
-
 export default App;
+
+
