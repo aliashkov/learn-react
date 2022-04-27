@@ -7,7 +7,7 @@ class MyButton extends React.Component {
     }
 
     render() {
-        return <button className={styles.myBtn} onClick={() => { this.props.addTurn(this.props.name)}}> {this.props.name}
+        return <button className={styles.myBtn}> {this.props.name}
                </button>;
 
     }
