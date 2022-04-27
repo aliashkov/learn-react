@@ -14,10 +14,9 @@ class App extends React.Component {
 
   addTurn = (newTurn) => {
     const newValue = [...this.state.value, newTurn];
-    console.log(newValue)
     if (newValue.length > 3)
     {
-      const removedElement = newValue.shift()
+      newValue.shift();
       this.setState({value: newValue});
     }
     else
