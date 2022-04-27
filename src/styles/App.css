@@ -13,7 +13,7 @@
     width: 800px;
 }
 
-.news{
+.news {
     display: flex;
     padding: 15px;
     border: 2px solid teal;
@@ -22,7 +22,7 @@
     align-items: center;
 }
 
-.news_buttons{
+.news_buttons {
     display: flex;
     justify-content: center;
     align-items: center;

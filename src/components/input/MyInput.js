@@ -1,16 +1,17 @@
-import React, { useState } from 'react'
+import React from 'react'
 import classes from './MyInput.module.css'
 
 
 class MyInput extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.ref = React.createRef();
     }
 
     render() {
         return (
-            <input {...this.props} ref={this.ref} className={classes.myInput}> 
+            <input onChange={() => { this.props.searchedposts(this.props.news) }}
+                {...this.props} ref={this.ref} className={classes.myInput}>
             </input>
         )
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import MyButton from '../components/button/MyButton';
+import MyButtonShow from './button/MyButtonShow';
 import '../styles/App.css'
 
 class PostNews extends React.Component {
@@ -9,15 +9,16 @@ class PostNews extends React.Component {
 
     render() {
         return <div className='news'>
-                 <div className='news__content'>
-                    <strong>{this.props.news.id}. {this.props.news.title}</strong>
-                    <div>
-                       {this.props.news.body}
-                    </div>
-                 </div>
-                <div className='news_buttons'>
-                   <MyButton name={'Открыть новость'}/>
-                   <MyButton name={'Закрыть новость'}/>
+            <div className='news__content'>
+                <strong>{this.props.news.id}. {this.props.news.title}</strong>
+                <div>
+                    {console.log()}
+                    {(this.props.news.hidden) ? '' : (this.props.news.body)}
+                </div>
+            </div>
+            <div className='news_buttons'>
+                <MyButtonShow addVisibleValue={this.props.addVisibleValue} id={this.props.news.id} visible={false} name={'Открыть новость'} />
+                <MyButtonShow addVisibleValue={this.props.addVisibleValue} id={this.props.news.id} visible={true} name={'Закрыть новость'} />
             </div>
         </div>
 
