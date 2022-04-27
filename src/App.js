@@ -15,12 +15,8 @@ class App extends React.Component {
   addTurn = (newTurn) => {
     const newValue = [...this.state.value, newTurn];
     if (newValue.length > 3)
-    {
-      newValue.shift();
-      this.setState({value: newValue});
-    }
-    else
-       this.setState({value: newValue});
+      newValue.shift();  
+    this.setState({value: newValue});
   }
 
 
@@ -34,5 +30,3 @@ class App extends React.Component {
   }
 }
 export default App;
-
-
