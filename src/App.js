@@ -8,14 +8,18 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ''
+      value: []
     }
   }
 
   addTurn = (newTurn) => {
     const newValue = [...this.state.value, newTurn];
+    console.log(newValue)
     if (newValue.length > 3)
-       this.setState({value: newValue.slice(1)});
+    {
+      const removedElement = newValue.shift()
+      this.setState({value: newValue});
+    }
     else
        this.setState({value: newValue});
   }
