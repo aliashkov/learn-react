@@ -9,14 +9,14 @@ class PostList extends React.Component {
     
     render() {
         console.log(this.props)
-        return <div>
+        return <>
             <h1 style={{ textAlign: 'center' }}>
                 {this.props.title}
             </h1>
             {this.props.news.map((news) =>
                 <PostNews addVisibleValue={this.props.addVisibleValue} news={news} key={news.id} />)
             }
-        </div>
+        </>
 
     }
 }
