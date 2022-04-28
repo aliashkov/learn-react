@@ -12,7 +12,6 @@ class PostNews extends React.Component {
             <div className='news__content'>
                 <strong>{this.props.news.id}. {this.props.news.title}</strong>
                 <div>
-                    {console.log()}
                     {(this.props.news.hidden) ? '' : (this.props.news.body)}
                 </div>
             </div>
