@@ -1,4 +1,4 @@
-import React, { useState, useMemo} from 'react';
+import React, { useState, useMemo } from 'react';
 import PostList from './components/PostList';
 import './styles/App.css'
 import PostAdd from './components/PostAdd';
@@ -16,6 +16,7 @@ function App() {
   ]);
 
   const [filter, setFilter] = useState('')
+  const [isSorted, setIsSorted] = useState(false)
 
 
   const initialState = (newsArticle) => {
@@ -24,16 +25,37 @@ function App() {
     )))
   }
 
-  const sortReverse = () => {
+  const sortById = () => {
     news.sort((a, b) => {
-      if (a.title > b.title) {
+      if (a.id > b.id) {
         return -1
-      } else if (a.title < b.title) {
+      } else if (a.id < b.id) {
         return 1
       } else {
         return 0
       }
     })
+    setIsSorted(true)
+  }
+
+  const sortInitial = () => {
+    news.sort((a, b) => {
+      if (a.id < b.id) {
+        return -1
+      } else if (a.id > b.id) {
+        return 1
+      } else {
+        return 0
+      }
+    })
+    setIsSorted(false)
+  }
+
+  const sortReverse = (isSorted) => {
+    if (!isSorted) 
+      sortById()
+    else 
+      sortInitial()
     initialState(news);
   }
 
@@ -64,9 +86,9 @@ function App() {
   return (
 
     <div className='App'>
-      <PostHeader found={foundArray} news={news} filter={filter} initialState={initialState} sortReverse={sortReverse} setFilter={setFilter}/>
+      <PostHeader found={foundArray} news={news} filter={filter} initialState={initialState} isSorted={isSorted} sortReverse={sortReverse} setFilter={setFilter} />
       <PostAdd create={createNews} news={news} />
-      <PostList addVisibleValue={addVisibleValue} filter={filter}  news={searchedNews} title='Новости' />
+      <PostList addVisibleValue={addVisibleValue} filter={filter} news={searchedNews} title='Новости' />
     </div>
   );
 }

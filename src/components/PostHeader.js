@@ -14,7 +14,7 @@ const PostHeader = (props) => {
 
             />
             <MyButton onClick={() => { props.initialState(props.news) }} > Сбросить состояния </MyButton>
-            <MyButton onClick={props.sortReverse} > Сортировать </MyButton>
+            <MyButton onClick={() => {props.sortReverse(props.isSorted)}} > Сортировать </MyButton>
         </div>
     )
 }
