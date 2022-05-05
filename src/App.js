@@ -3,18 +3,11 @@ import PostList from './components/PostList';
 import './styles/App.css'
 import PostAdd from './components/PostAdd';
 import PostHeader from './components/PostHeader';
+import data from './data'
 
 function App() {
 
-  const [news, setNews] = useState([
-    { id: 1, title: 'Новость 1', body: 'Какая-то новость' },
-    { id: 2, title: 'Новость 2', body: 'Какая-то новость 2' },
-    { id: 3, title: 'Новость 3', body: 'Какая-то новость 3' },
-    { id: 4, title: 'Новость 4', body: 'Какая-то новость 4' },
-    { id: 5, title: 'Новость 5', body: 'Какая-то новость 5' },
-    { id: 6, title: 'Новость 6', body: 'Какая-то новость 6' },
-  ]);
-
+  const [news, setNews] = useState(data);
   const [filter, setFilter] = useState('')
   const [isSorted, setIsSorted] = useState(false)
 
@@ -27,9 +20,9 @@ function App() {
 
   const sortById = () => {
     news.sort((a, b) => {
-      if (a.id > b.id) {
+      if (a.title > b.title) {
         return -1
-      } else if (a.id < b.id) {
+      } else if (a.title < b.title) {
         return 1
       } else {
         return 0
@@ -40,9 +33,9 @@ function App() {
 
   const sortInitial = () => {
     news.sort((a, b) => {
-      if (a.id < b.id) {
+      if (a.title < b.title) {
         return -1
-      } else if (a.id > b.id) {
+      } else if (a.title > b.title) {
         return 1
       } else {
         return 0
@@ -77,7 +70,7 @@ function App() {
   }
 
   const searchedNews = useMemo(() => {
-    return [...news].filter(post => post.title.toLowerCase().includes(filter))
+    return [...news].filter(post => post.title.toLowerCase().includes(filter.toLowerCase()))
   }, [filter, news])
 
 
