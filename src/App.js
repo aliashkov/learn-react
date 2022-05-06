@@ -4,8 +4,15 @@ import './styles/App.css'
 import PostAdd from './components/PostAdd';
 import PostHeader from './components/PostHeader';
 import data from './data'
+import {useDispatch , useSelector} from "react-redux"
 
 function App() {
+
+  const dispatch = useDispatch();
+  const cash = useSelector(state => state.newsReducer.cash)
+  console.log(cash)
+  const customers = useSelector(state => state.customerReducer.customers)
+  console.log(customers)
 
   const [news, setNews] = useState(data);
   const [filter, setFilter] = useState('')
@@ -65,6 +72,7 @@ function App() {
   }
 
 
+
   const createNews = (newArticle) => {
     setNews([...news, newArticle])
   }
@@ -73,12 +81,24 @@ function App() {
     return [...news].filter(post => post.title.toLowerCase().includes(filter.toLowerCase()))
   }, [filter, news])
 
+  const getCash = () => {
+     dispatch({type: "ADD_MONEY" , payload : 5})
+     console.log(cash)
+  }
+
+  const addCash = () => {
+     dispatch({type: "GET_MONEY" , payload : 5})
+     console.log(cash)
+  }
 
 
 
   return (
-
+   
     <div className='App'>
+       <button onClick={() => addCash()}>Пополнить</button>
+       <button onClick={() => getCash()}>Забрать</button>
+       <h1>{cash}</h1>
       <PostHeader found={foundArray} news={news} filter={filter} initialState={initialState} isSorted={isSorted} sortReverse={sortReverse} setFilter={setFilter} />
       <PostAdd create={createNews} news={news} />
       <PostList addVisibleValue={addVisibleValue} filter={filter} news={searchedNews} title='Новости' />
