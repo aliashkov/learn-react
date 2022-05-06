@@ -9,9 +9,9 @@ import {useDispatch , useSelector} from "react-redux"
 function App() {
 
   const dispatch = useDispatch();
-  const cash = useSelector(state => state.newsReducer.cash)
+  const cash = useSelector(state => state.customerReducer.cash)
   console.log(cash)
-  const customers = useSelector(state => state.customerReducer.customers)
+  const customers = useSelector(state => state.newsReducer.news)
   console.log(customers)
 
   const [news, setNews] = useState(data);
