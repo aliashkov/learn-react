@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux"
 const PostAdd = (props) => {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
+    const [file, setFile] = useState('');
     const dispatch = useDispatch();
 
     const addNews = () => {
@@ -15,6 +16,7 @@ const PostAdd = (props) => {
             id,
             title,
             body,
+            file,
             hidden: true
         }
         dispatch({ type: "ADD_POST", payload: newArticle })
@@ -36,6 +38,12 @@ const PostAdd = (props) => {
                     onChange={e => setBody(e.target.value)}
                     type="text"
                     placeholder='Описание новости'
+                />
+                <MyInput
+                    value={file}
+                    onChange={e => setFile(e.target.value)}
+                    type="text"
+                    placeholder='URL картинки'
                 />
             </div>
             <div className='button__wrapper'>

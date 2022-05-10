@@ -14,6 +14,7 @@ const PostNews = (props) => {
     return (
         <div className='news'>
             <div className='news__content'>
+                <img width="100px" height="100px" alt="img" src={props.news.file}></img>
                 <strong>{props.number}. {props.news.title}</strong>
                 <div>
                     {(props.news.hidden) ? '' : (props.news.body)}
