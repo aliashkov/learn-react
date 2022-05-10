@@ -11,6 +11,7 @@ function App() {
   const posts = useSelector(state => state.newsReducer.news)
   const filter = useSelector(state => state.filterReducer.filter)
 
+
   const initialState = (newsArticle) => {
     dispatch({
       type: "INITIAL_STATE", payload: posts.map((posts, index) => (
