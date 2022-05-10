@@ -11,12 +11,16 @@
 
 .App {
     width: 800px;
+    box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
+    border-radius: 20px;
 }
 
 .news {
     display: flex;
     padding: 15px;
-    border: 2px solid teal;
+    border: 3px solid rgba(0,0,0,.125);
+    border-radius: 25px;
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
     margin-top: 15px;
     justify-content: space-between;
     align-items: center;
@@ -34,3 +38,30 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.create__wrapper {
+    margin: 15px 0;
+    border: 3px solid rgba(0,0,0,.125);
+    border-radius: 25px;
+    padding: 15px;
+}
+
+.input__wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.button__wrapper {
+    text-align: center;
+}
+
+
+.news:last-child {
+    border-bottom: none;
+}
+
+
+
+
