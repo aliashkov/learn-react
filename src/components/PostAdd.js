@@ -2,22 +2,25 @@ import React, { useState } from 'react';
 import MyButton from './button/MyButton';
 import MyInput from './input/MyInput';
 import { v4 as uuidv4 } from 'uuid';
+import { useDispatch } from "react-redux"
 
 const PostAdd = (props) => {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
+    const dispatch = useDispatch();
 
     const addNews = () => {
         const id = uuidv4();
         const newArticle = {
             id,
             title,
-            body
+            body,
+            hidden: true
         }
-        props.create(newArticle)
+        dispatch({ type: "ADD_POST", payload: newArticle })
+        //props.create(newArticle)
     }
 
-    console.log(props)
     return (
 
         <div className='create__wrapper'>

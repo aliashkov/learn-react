@@ -1,5 +1,5 @@
 const defaultStore = {
-    news : [
+    foundNews: [
         { id: 1, title: 'Новость 1', body: 'Какая-то новость' },
         { id: 2, title: 'Новость 2', body: 'Какая-то новость 2' },
         { id: 3, title: 'Новость 3', body: 'Какая-то новость 3' },
@@ -10,15 +10,11 @@ const defaultStore = {
 }
 
 
-
-
-export const newsReducer = (state = defaultStore  , action) =>{
+export const foundNewsReducer = (state = defaultStore, action) => {
     switch (action.type) {
-        case "ADD_CUSTOMER":
-           return {...state, cash : state.cash + action.payload}
-        case "GET_CUSTOMER":
-           return {...state, cash : state.cash - action.payload}
-        default :
-          return state
+        case "FOUND_NEWS":
+            return { ...state, foundNews: action.payload }
+        default:
+            return state
     }
 }

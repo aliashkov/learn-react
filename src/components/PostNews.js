@@ -1,8 +1,15 @@
 import React from 'react';
 import MyButton from './button/MyButton';
 import '../styles/App.css'
+import { useDispatch, useSelector } from "react-redux"
 
 const PostNews = (props) => {
+
+    const dispatch = useDispatch();
+    const posts = useSelector(state => state.newsReducer.news)
+    const addVisibleValue = (id, visible) => {
+        dispatch({ type: "CHANGE_VISIBILITY", payload: [...posts].map((news, index) => ((news.id === id) ? { ...news, hidden: visible } : { ...news })) })
+    }
 
     return (
         <div className='news'>
@@ -13,9 +20,9 @@ const PostNews = (props) => {
                 </div>
             </div>
             <div className='news_buttons'>
-                {(props.news.hidden) 
-                ? <MyButton onClick={() => { props.addVisibleValue(props.news.id, false) }} > Открыть новость </MyButton>
-                : <MyButton onClick={() => { props.addVisibleValue(props.news.id, true) }} > Закрыть новость </MyButton> 
+                {(props.news.hidden)
+                    ? <MyButton onClick={() => { addVisibleValue(props.news.id, false) }} > Открыть новость </MyButton>
+                    : <MyButton onClick={() => { addVisibleValue(props.news.id, true) }} > Закрыть новость </MyButton>
                 }
             </div>
         </div>
@@ -23,4 +30,5 @@ const PostNews = (props) => {
 }
 
 export default PostNews;
+
 
