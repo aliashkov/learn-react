@@ -13,7 +13,7 @@ const PostHeader = (props) => {
                 onChange={e => props.setFilter(e.target.value)}
 
             />
-            <MyButton onClick={() => { props.initialState(props.news) }} > Сбросить состояния </MyButton>
+            <MyButton onClick={() => { props.initialState() }} > Сбросить состояния </MyButton>
             <MyButton onClick={() => {props.sortReverse(props.isSorted)}} > Сортировать </MyButton>
         </div>
     )

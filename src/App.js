@@ -12,10 +12,17 @@ function App() {
   const [isSorted, setIsSorted] = useState(false)
 
 
-  const initialState = (newsArticle) => {
-    return setNews(newsArticle.map((news, index) => (
-      (index === 0) ? { ...news, hidden: false } : { ...news, hidden: true }
-    )))
+
+
+  const initialState = () => {
+    const posts = [...news].map((news, index) =>
+      (index === 0)
+        ?
+        { ...news, hidden: false } 
+        :
+        { ...news, hidden: true }
+    );
+    return setNews(posts)
   }
 
   const sortById = () => {
@@ -45,19 +52,26 @@ function App() {
   }
 
   const sortReverse = (isSorted) => {
-    if (!isSorted) 
+    if (!isSorted)
       sortById()
-    else 
+    else
       sortInitial()
-    initialState(news);
+    initialState();
   }
 
   const addVisibleValue = (id, visible) => {
-    return setNews([...news].map((news, index) => ((news.id === id) ? { ...news, hidden: visible } : { ...news })))
+    const posts = [...news].map((news, index) =>
+      (news.id === id)
+        ?
+        { ...news, hidden: visible }
+        :
+        { ...news }
+    );
+    return setNews(posts)
   }
 
   React.useEffect(() => {
-    initialState(news);
+    initialState();
   }, []);
 
   const foundArray = (newsArticle) => {
