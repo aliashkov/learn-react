@@ -11,7 +11,7 @@ const AdminItems = (props) => {
   const filter = useSelector(state => state.filterReducer.filter)
   const isSorted = useSelector(state => state.isSortedReducer.isSorted)
 
-  const initialState = (newsArticle) => {
+  const initialState = (postsArticle) => {
     if (isSorted) {
       dispatch({
         type: "POSTS_SORT", payload: posts.sort((a, b) => {
@@ -39,7 +39,7 @@ const AdminItems = (props) => {
   }, []);
 
   React.useEffect(() => {
-    dispatch({ type: "FOUND_NEWS", payload: [...posts].filter(post => post.title.toLowerCase().includes(filter.toLowerCase())) })
+    dispatch({ type: "FOUND_ITEMS", payload: [...posts].filter(post => post.title.toLowerCase().includes(filter.toLowerCase())) })
   }, [dispatch, filter, posts]);
 
 

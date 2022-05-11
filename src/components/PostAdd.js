@@ -12,7 +12,7 @@ const PostAdd = (props) => {
     const posts = useSelector(state => state.itemsReducer.items)
     const dispatch = useDispatch();
 
-    const addNews = () => {
+    const addPosts = () => {
         const id = uuidv4();
         const newArticle = {
             id,
@@ -26,7 +26,7 @@ const PostAdd = (props) => {
         //props.create(newArticle)
     }
 
-    const updateNews = () => {
+    const updatePosts = () => {
         const id = props.idValue;
         const newArticle = {
             id,
@@ -36,17 +36,16 @@ const PostAdd = (props) => {
             file,
             hidden: true
         }
-        console.log([...posts].map((news, index) => ((news.id === id) ? { ...news, id: id, title: title } : { ...news })))
+        console.log([...posts].map((posts, index) => ((posts.id === id) ? { ...posts, id: id, title: title } : { ...posts })))
         dispatch({
-            type: "CHANGE_POST", payload: [...posts].map((news, index) => (
-                (news.id === id) ?
+            type: "CHANGE_POST", payload: [...posts].map((posts, index) => (
+                (posts.id === id) ?
                     {
-                        ...news,
+                        ...posts,
                         ...newArticle
-                    } : { ...news }))
+                    } : { ...posts }))
         })
     }
-
 
     return (
 
@@ -80,8 +79,8 @@ const PostAdd = (props) => {
             </div>
             <div className='button__wrapper'>
                 {(props.changed)
-                    ? <MyButton onClick={updateNews} > Изменить пост</MyButton>
-                    : <MyButton onClick={addNews} > Создать пост</MyButton>
+                    ? <MyButton onClick={updatePosts} > Изменить пост</MyButton>
+                    : <MyButton onClick={addPosts} > Создать пост</MyButton>
                 }
             </div>
 

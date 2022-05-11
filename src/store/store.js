@@ -4,6 +4,8 @@ import { customerReducer } from '../reducers/customerReducer'
 import { filterReducer } from '../reducers/filterReducer'
 import { isSortedReducer } from '../reducers/isSortedReducer'
 import { foundItemsReducer } from '../reducers/foundItemsReducer'
+import { usersReducer } from '../reducers/usersReducer'
+import { isClosedReducer } from '../reducers/IsOpenedReducer'
 
 
 const rootReducer = combineReducers({
@@ -11,7 +13,9 @@ const rootReducer = combineReducers({
     customerReducer,
     filterReducer,
     isSortedReducer,
-    foundItemsReducer
+    foundItemsReducer,
+    usersReducer,
+    isClosedReducer
 })
 
 

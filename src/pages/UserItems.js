@@ -10,7 +10,7 @@ const UserItems = (props) =>{
   const posts = useSelector(state => state.itemsReducer.items)
   const filter = useSelector(state => state.filterReducer.filter)
 
-  const initialState = (newsArticle) => {
+  const initialState = (postsArticle) => {
     dispatch({
       type: "INITIAL_STATE", payload: posts.map((posts, index) => (
         (index === 0) ? { ...posts, hidden: false } : { ...posts, hidden: true }
@@ -23,7 +23,7 @@ const UserItems = (props) =>{
   }, []);
 
   React.useEffect(() => {
-    dispatch({ type: "FOUND_NEWS", payload: [...posts].filter(post => post.title.toLowerCase().includes(filter.toLowerCase())) })
+    dispatch({ type: "FOUND_ITEMS", payload: [...posts].filter(post => post.title.toLowerCase().includes(filter.toLowerCase())) })
   }, [dispatch, filter, posts]);
 
 

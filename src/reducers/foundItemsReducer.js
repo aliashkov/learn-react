@@ -12,7 +12,7 @@ const defaultStore = {
 
 export const foundItemsReducer = (state = defaultStore, action) => {
     switch (action.type) {
-        case "FOUND_NEWS":
+        case "FOUND_ITEMS":
             return { ...state, foundItems: action.payload }
         default:
             return state
