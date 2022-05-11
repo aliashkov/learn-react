@@ -1,14 +1,13 @@
 import React from 'react';
 import PostList from '../components/PostList';
 import '../styles/App.css'
-import PostAdd from '../components/PostAdd';
 import PostHeader from '../components/PostHeader';
 import { useDispatch, useSelector } from "react-redux"
 
 const UserItems = (props) =>{
 
   const dispatch = useDispatch();
-  const posts = useSelector(state => state.newsReducer.news)
+  const posts = useSelector(state => state.itemsReducer.items)
   const filter = useSelector(state => state.filterReducer.filter)
 
   const initialState = (newsArticle) => {
@@ -32,8 +31,7 @@ const UserItems = (props) =>{
 
     <div className='App'>
       <PostHeader initialState={initialState} />
-      <PostAdd />
-      <PostList title='Новости' />
+      <PostList title='Новости' admin = {props.admin} />
     </div>
   );
 }

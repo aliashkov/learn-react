@@ -1,17 +1,17 @@
 import { legacy_createStore, combineReducers } from 'redux'
-import { newsReducer } from '../reducers/newsReducer'
+import { itemsReducer } from '../reducers/itemsReducer'
 import { customerReducer } from '../reducers/customerReducer'
 import { filterReducer } from '../reducers/filterReducer'
 import { isSortedReducer } from '../reducers/isSortedReducer'
-import { foundNewsReducer } from '../reducers/foundNewsReducer'
+import { foundItemsReducer } from '../reducers/foundItemsReducer'
 
 
 const rootReducer = combineReducers({
-    newsReducer,
+    itemsReducer,
     customerReducer,
     filterReducer,
     isSortedReducer,
-    foundNewsReducer
+    foundItemsReducer
 })
 
 

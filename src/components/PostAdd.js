@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import MyButton from './button/MyButton';
 import MyInput from './input/MyInput';
 import { v4 as uuidv4 } from 'uuid';
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 const PostAdd = (props) => {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
+    const [cost, setCost] = useState('');
     const [file, setFile] = useState('');
+    const posts = useSelector(state => state.itemsReducer.items)
     const dispatch = useDispatch();
 
     const addNews = () => {
@@ -16,12 +18,35 @@ const PostAdd = (props) => {
             id,
             title,
             body,
+            cost,
             file,
             hidden: true
         }
         dispatch({ type: "ADD_POST", payload: newArticle })
         //props.create(newArticle)
     }
+
+    const updateNews = () => {
+        const id = props.idValue;
+        const newArticle = {
+            id,
+            title,
+            body,
+            cost,
+            file,
+            hidden: true
+        }
+        console.log([...posts].map((news, index) => ((news.id === id) ? { ...news, id: id, title: title } : { ...news })))
+        dispatch({
+            type: "CHANGE_POST", payload: [...posts].map((news, index) => (
+                (news.id === id) ?
+                    {
+                        ...news,
+                        ...newArticle
+                    } : { ...news }))
+        })
+    }
+
 
     return (
 
@@ -40,14 +65,24 @@ const PostAdd = (props) => {
                     placeholder='Описание новости'
                 />
                 <MyInput
+                    value={cost}
+                    onChange={e => setCost(e.target.value)}
+                    type="text"
+                    placeholder='Стоимость товара'
+                />
+                <MyInput
                     value={file}
                     onChange={e => setFile(e.target.value)}
                     type="text"
                     placeholder='URL картинки'
                 />
+
             </div>
             <div className='button__wrapper'>
-                <MyButton onClick={addNews} > Создать новость</MyButton>
+                {(props.changed)
+                    ? <MyButton onClick={updateNews} > Изменить пост</MyButton>
+                    : <MyButton onClick={addNews} > Создать пост</MyButton>
+                }
             </div>
 
         </div>

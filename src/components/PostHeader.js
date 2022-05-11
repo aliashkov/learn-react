@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux"
 const PostHeader = (props) => {
     const dispatch = useDispatch();
     const filter = useSelector(state => state.filterReducer.filter)
-    const posts = useSelector(state => state.newsReducer.news)
+    const posts = useSelector(state => state.itemsReducer.items)
     const isSorted = useSelector(state => state.isSortedReducer.isSorted)
 
 
@@ -55,7 +55,6 @@ const PostHeader = (props) => {
                 value={filter}
                 onChange={e => dispatch({ type: "SEARCH_STRING", payload: e.target.value })}
             />
-            <MyButton onClick={() => { props.initialState(posts) }} > Сбросить состояния </MyButton>
             <MyButton onClick={() => { sortReverse(isSorted) }} > Сортировать </MyButton>
         </div>
     )
