@@ -6,7 +6,6 @@ import { useSelector } from "react-redux"
 const PostList = (props) => {
     const foundItems = useSelector(state => state.foundItemsReducer.foundItems)
     const isSorted = useSelector(state => state.isSortedReducer.isSorted)
-    console.log(isSorted)
 
     return (
 

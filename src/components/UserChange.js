@@ -74,6 +74,7 @@ const UserChange = (props) => {
             </div>
             <div className='button__wrapper'>
                 <MyButton onClick={updateUser} > Изменить данные</MyButton>
+
             </div>
 
         </div>

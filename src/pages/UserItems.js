@@ -5,12 +5,15 @@ import PostHeader from '../components/PostHeader';
 import { useDispatch, useSelector } from "react-redux"
 import { initialStateAction } from '../actions/itemsAction';
 import { foundPostsAction } from '../actions/foundItemsAction';
+import { fetchItems } from '../serivces/items';
+import { Watch } from 'react-loader-spinner'
 
 const UserItems = (props) => {
 
   const dispatch = useDispatch();
   const posts = useSelector(state => state.itemsReducer.items)
   const filter = useSelector(state => state.filterReducer.filter)
+  const isLoaded = useSelector(state => state.isLoadedReducer.isLoadedItems)
 
   const initialState = (postsArticle) => {
     const initialPosts = posts.map((posts, index) => (
@@ -20,6 +23,8 @@ const UserItems = (props) => {
   }
 
   React.useEffect(() => {
+    if (!isLoaded)
+      dispatch(fetchItems())
     initialState(posts);
   }, []);
 
@@ -32,8 +37,20 @@ const UserItems = (props) => {
   return (
 
     <div className='App'>
-      <PostHeader initialState={initialState} />
-      <PostList title='Новости' admin={props.admin} />
+      {(isLoaded)
+        ? <>
+          <PostHeader initialState={initialState} />
+          <PostList title='Новости' admin={props.admin} />
+        </>
+        : <div className='watch'>
+          <Watch className='watch'
+            height="250"
+            width="250"
+            color='black'
+            ariaLabel='loading'
+          />
+        </div>
+      }
     </div>
   );
 }

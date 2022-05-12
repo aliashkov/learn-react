@@ -7,15 +7,21 @@ import { seatchStringAction } from '../actions/filterAction';
 import { initialSortAction } from '../actions/isSortedAction';
 import { foundPostsAction } from '../actions/foundItemsAction';
 import { initialStateAction, postsSortAction } from '../actions/itemsAction';
+import { fetchItems } from '../serivces/items';
+import { Watch } from 'react-loader-spinner'
 
 const AdminItems = (props) => {
 
   const dispatch = useDispatch();
   const posts = useSelector(state => state.itemsReducer.items)
+  console.log(posts)
   const filter = useSelector(state => state.filterReducer.filter)
   const isSorted = useSelector(state => state.isSortedReducer.isSorted)
+  const isLoaded = useSelector(state => state.isLoadedReducer.isLoadedItems)
+  console.log(isLoaded)
 
   const initialState = (postsArticle) => {
+
     if (isSorted) {
       const sortedPosts = posts.sort((a, b) => {
         if (a.title < b.title) {
@@ -37,8 +43,11 @@ const AdminItems = (props) => {
   }
 
   React.useEffect(() => {
+    if (!isLoaded)
+      dispatch(fetchItems())
     initialState(posts);
   }, []);
+
 
   React.useEffect(() => {
     const foundItems = [...posts].filter(post => post.title.toLowerCase().includes(filter.toLowerCase()))
@@ -49,8 +58,20 @@ const AdminItems = (props) => {
   return (
 
     <div className='App'>
-      <PostAdd />
-      <PostList title='Новости' admin={props.admin} />
+      {(isLoaded)
+        ? <>
+          <PostAdd />
+          <PostList title='Новости' admin={props.admin} />
+        </>
+        : <div className='watch'>
+          <Watch className='watch'
+            height="250"
+            width="250"
+            color='black'
+            ariaLabel='loading'
+          />
+        </div>
+      }
     </div>
   );
 }

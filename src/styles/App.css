@@ -148,3 +148,9 @@ nav ul li a:hover {
 .posts__main{
     display: flex;
 }
+
+.watch{
+    padding: 100px 0;
+    display: flex;
+    justify-content: center;
+}

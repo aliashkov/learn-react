@@ -4,3 +4,4 @@ export const changeVisibiltyAction = (payload) => ({type : "CHANGE_VISIBILITY", 
 export const addPostAction = (payload) => ({type : "ADD_POST" , payload})
 export const deleteItemAction = (payload) => ({type : "DELETE_ITEM", payload})
 export const changePostAction = (payload) => ({type : "CHANGE_POST" , payload})
+export const getItemsAction = (payload) => ({type : "GET_ALL_POSTS" , payload})
