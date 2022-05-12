@@ -10,7 +10,7 @@ const Profile = (props) => {
   const dispatch = useDispatch();
   const isClosed = useSelector(state => state.isClosedReducer.isClosed)
   const users = useSelector(state => state.usersReducer.users)
-  const foundUser = users.find(user => user.id == 1)
+  const foundUser = users.find(user => user.id === 1)
 
 
   const openChangingForm = (visible) => {
@@ -23,7 +23,7 @@ const Profile = (props) => {
 
   React.useEffect(() => {
     dispatch({ type: "CLOSE" })
-  }, []);
+  }, [dispatch]);
 
 
   return (
