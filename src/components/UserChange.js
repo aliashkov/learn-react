@@ -10,7 +10,6 @@ const UserChange = (props) => {
     const [passwordNumber, setPasswordNumber] = useState('');
     const [file, setFile] = useState('');
     const users = useSelector(state => state.usersReducer.users)
-    console.log(users)
     const dispatch = useDispatch();
 
     const updateUser = () => {
