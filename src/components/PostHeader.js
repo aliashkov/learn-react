@@ -2,6 +2,9 @@ import React from 'react';
 import MyInput from './input/MyInput';
 import MyButton from './button/MyButton';
 import { useDispatch, useSelector } from "react-redux"
+import { seatchStringAction } from '../actions/filterAction';
+import { initialSortAction, isSortedAction } from '../actions/isSortedAction';
+import { postsSortAction } from '../actions/itemsAction';
 
 const PostHeader = (props) => {
     const dispatch = useDispatch();
@@ -11,33 +14,31 @@ const PostHeader = (props) => {
 
 
     const sortById = () => {
-        dispatch({
-            type: "POSTS_SORT", payload: posts.sort((a, b) => {
-                if (a.title > b.title) {
-                    return -1
-                } else if (a.title < b.title) {
-                    return 1
-                } else {
-                    return 0
-                }
-            })
+        const sortedPosts = posts.sort((a, b) => {
+            if (a.title > b.title) {
+                return -1
+            } else if (a.title < b.title) {
+                return 1
+            } else {
+                return 0
+            }
         })
-        dispatch({ type: "IS_SORTED" })
+        dispatch(postsSortAction(sortedPosts))
+        dispatch(isSortedAction())
     }
 
     const sortInitial = () => {
-        dispatch({
-            type: "POSTS_SORT", payload: posts.sort((a, b) => {
-                if (a.title < b.title) {
-                    return -1
-                } else if (a.title > b.title) {
-                    return 1
-                } else {
-                    return 0
-                }
-            })
+        const sortedPosts = posts.sort((a, b) => {
+            if (a.title < b.title) {
+                return -1
+            } else if (a.title > b.title) {
+                return 1
+            } else {
+                return 0
+            }
         })
-        dispatch({ type: "INITIAL_SORT" })
+        dispatch(postsSortAction(sortedPosts))
+        dispatch(initialSortAction())
     }
 
     const sortReverse = (isSorted) => {

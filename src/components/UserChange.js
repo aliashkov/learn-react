@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import MyButton from './button/MyButton';
 import MyInput from './input/MyInput';
 import { useDispatch, useSelector } from "react-redux"
+import { changeUserAction } from '../actions/usersAction';
 
 const UserChange = (props) => {
     const [name, setName] = useState('');
@@ -20,14 +21,19 @@ const UserChange = (props) => {
             passwordNumber,
             file
         }
-        dispatch({
-            type: "CHANGE_USER", payload: [...users].map((users, index) => (
-                (users.id === 1) ?
-                    {
-                        ...users,
-                        ...newUser
-                    } : { ...users }))
-        })
+        modifyData(newUser);
+    }
+
+    const modifyData = (newUser) =>{
+        const changedUser = [...users].map((users, index) => (
+            (users.id === 1) 
+                ? {
+                    ...users,
+                    ...newUser
+                } : { ...users }
+            )
+        )
+        dispatch(changeUserAction(changedUser))
     }
 
     return (

@@ -4,12 +4,14 @@ const defaultStore = {
     ],
 }
 
-
 export const usersReducer = (state = defaultStore, action) => {
     switch (action.type) {
         case "CHANGE_USER":
             return { ...state, users: action.payload }
+        case "GET_USERS":
+            return {...state , users : [...state.users, ...state.payload]}
         default:
             return state
     }
 }
+

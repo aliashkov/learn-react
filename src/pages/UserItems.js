@@ -3,19 +3,20 @@ import PostList from '../components/PostList';
 import '../styles/App.css'
 import PostHeader from '../components/PostHeader';
 import { useDispatch, useSelector } from "react-redux"
+import { initialStateAction } from '../actions/itemsAction';
+import { foundPostsAction } from '../actions/foundItemsAction';
 
-const UserItems = (props) =>{
+const UserItems = (props) => {
 
   const dispatch = useDispatch();
   const posts = useSelector(state => state.itemsReducer.items)
   const filter = useSelector(state => state.filterReducer.filter)
 
   const initialState = (postsArticle) => {
-    dispatch({
-      type: "INITIAL_STATE", payload: posts.map((posts, index) => (
-        (index === 0) ? { ...posts, hidden: false } : { ...posts, hidden: true }
-      ))
-    })
+    const initialPosts = posts.map((posts, index) => (
+      (index === 0) ? { ...posts, hidden: false } : { ...posts, hidden: true }
+    ))
+    dispatch(initialStateAction(initialPosts))
   }
 
   React.useEffect(() => {
@@ -23,7 +24,8 @@ const UserItems = (props) =>{
   }, []);
 
   React.useEffect(() => {
-    dispatch({ type: "FOUND_ITEMS", payload: [...posts].filter(post => post.title.toLowerCase().includes(filter.toLowerCase())) })
+    const foundItems = [...posts].filter(post => post.title.toLowerCase().includes(filter.toLowerCase()))
+    dispatch(foundPostsAction(foundItems))
   }, [dispatch, filter, posts]);
 
 
@@ -31,7 +33,7 @@ const UserItems = (props) =>{
 
     <div className='App'>
       <PostHeader initialState={initialState} />
-      <PostList title='Новости' admin = {props.admin} />
+      <PostList title='Новости' admin={props.admin} />
     </div>
   );
 }

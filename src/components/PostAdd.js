@@ -3,6 +3,7 @@ import MyButton from './button/MyButton';
 import MyInput from './input/MyInput';
 import { v4 as uuidv4 } from 'uuid';
 import { useDispatch, useSelector } from "react-redux"
+import { addPostAction, changePostAction } from '../actions/itemsAction';
 
 const PostAdd = (props) => {
     const [title, setTitle] = useState('');
@@ -22,7 +23,7 @@ const PostAdd = (props) => {
             file,
             hidden: true
         }
-        dispatch({ type: "ADD_POST", payload: newArticle })
+        dispatch(addPostAction(newArticle))
         //props.create(newArticle)
     }
 
@@ -36,15 +37,13 @@ const PostAdd = (props) => {
             file,
             hidden: true
         }
-        console.log([...posts].map((posts, index) => ((posts.id === id) ? { ...posts, id: id, title: title } : { ...posts })))
-        dispatch({
-            type: "CHANGE_POST", payload: [...posts].map((posts, index) => (
-                (posts.id === id) ?
-                    {
-                        ...posts,
-                        ...newArticle
-                    } : { ...posts }))
-        })
+        const changePosts =[...posts].map((posts, index) => (
+            (posts.id === id) ?
+                {
+                    ...posts,
+                    ...newArticle
+                } : { ...posts }))
+        dispatch(changePostAction(changePosts))
     }
 
     return (

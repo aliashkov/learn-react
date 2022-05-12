@@ -3,6 +3,7 @@ import MyButton from './button/MyButton';
 import '../styles/App.css'
 import { useDispatch, useSelector } from "react-redux"
 import PostAdd from './PostAdd';
+import { changeVisibiltyAction, deleteItemAction } from '../actions/itemsAction';
 
 
 const PostItems = (props) => {
@@ -10,12 +11,13 @@ const PostItems = (props) => {
     const dispatch = useDispatch();
     const posts = useSelector(state => state.itemsReducer.items)
     const addVisibleValue = (id, visible) => {
-        dispatch({ type: "CHANGE_VISIBILITY", payload: [...posts].map((posts, index) => ((posts.id === id) ? { ...posts, hidden: visible } : { ...posts })) })
+        const addVisiblePosts =  [...posts].map((posts, index) => ((posts.id === id) ? { ...posts, hidden: visible } : { ...posts }));
+        dispatch(changeVisibiltyAction(addVisiblePosts))
     }
 
     const deleteItem = (id) => {
-        console.log([...posts].filter((posts) => ((posts.id !== id))))
-        dispatch({ type: "DELETE_ITEM", payload: [...posts].filter((posts) => ((posts.id !== id))) })
+        const postsWithDeletedId = [...posts].filter((posts) => ((posts.id !== id)));
+        dispatch(deleteItemAction(postsWithDeletedId))
     }
 
     return (

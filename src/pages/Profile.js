@@ -3,6 +3,7 @@ import UserChange from '../components/UserChange';
 import '../styles/Profile.css'
 import MyButton from '../components/button/MyButton';
 import { useDispatch, useSelector } from "react-redux"
+import { closeAction, openAction } from '../actions/IsOpenedAction';
 
 
 const Profile = (props) => {
@@ -15,14 +16,14 @@ const Profile = (props) => {
 
   const openChangingForm = (visible) => {
     if (visible)
-      dispatch({ type: "OPEN" })
+      dispatch(openAction())
     else
-      dispatch({ type: "CLOSE" })
+      dispatch(closeAction())
   }
 
 
   React.useEffect(() => {
-    dispatch({ type: "CLOSE" })
+    dispatch(closeAction())
   }, [dispatch]);
 
 

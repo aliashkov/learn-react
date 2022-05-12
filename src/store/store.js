@@ -1,4 +1,4 @@
-import { legacy_createStore, combineReducers } from 'redux'
+import { legacy_createStore, combineReducers, applyMiddleware } from 'redux'
 import { itemsReducer } from '../reducers/itemsReducer'
 import { customerReducer } from '../reducers/customerReducer'
 import { filterReducer } from '../reducers/filterReducer'
@@ -6,6 +6,7 @@ import { isSortedReducer } from '../reducers/isSortedReducer'
 import { foundItemsReducer } from '../reducers/foundItemsReducer'
 import { usersReducer } from '../reducers/usersReducer'
 import { isClosedReducer } from '../reducers/IsOpenedReducer'
+import thunk from 'redux-thunk'
 
 
 const rootReducer = combineReducers({
