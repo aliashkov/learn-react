@@ -53,7 +53,7 @@ const PostHeader = (props) => {
             <MyInput
                 placeholder='Поиск новости...'
                 value={filter}
-                onChange={e => dispatch({ type: "SEARCH_STRING", payload: e.target.value })}
+                onChange={e => dispatch({ type: "CHANGE_FILTER", payload: e.target.value })}
             />
             <MyButton onClick={() => { props.initialState(posts) }} > Сбросить состояния </MyButton>
             <MyButton onClick={() => { sortReverse(isSorted) }} > Сортировать </MyButton>
