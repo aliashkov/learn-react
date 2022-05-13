@@ -1,20 +1,18 @@
 import React from 'react';
-import PostItems from './PostItems';
-import '../styles/App.css'
+import PostNews from './PostNews';
 import { useSelector } from "react-redux"
 
 const PostList = (props) => {
-    const foundItems = useSelector(state => state.foundItemsReducer.foundItems)
-    const isSorted = useSelector(state => state.isSortedReducer.isSorted)
+    const foundNews = useSelector(state => state.foundNewsReducer.foundNews)
 
     return (
 
-        <div className='posts__wrapper'>
-            <div className='posts__title' style={{ textAlign: 'center' , fontSize : '29px' }}>
+        <div className='news__wrapper'>
+            <h1 style={{ textAlign: 'center' }}>
                 {props.title}
-            </div>
-            {foundItems.map((posts, index) =>
-                <PostItems number={index + 1}  admin={props.admin} posts={posts} key={posts.id} />)
+            </h1>
+            {foundNews.map((news, index) =>
+                <PostNews number={index + 1} news={news} key={news.id} />)
             }
         </div>
     )

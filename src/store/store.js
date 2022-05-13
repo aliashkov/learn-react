@@ -1,25 +1,18 @@
-import { legacy_createStore, combineReducers, applyMiddleware } from 'redux'
-import { itemsReducer } from '../reducers/itemsReducer'
+import { legacy_createStore, combineReducers } from 'redux'
+import { newsReducer } from '../reducers/newsReducer'
 import { customerReducer } from '../reducers/customerReducer'
 import { filterReducer } from '../reducers/filterReducer'
 import { isSortedReducer } from '../reducers/isSortedReducer'
-import { foundItemsReducer } from '../reducers/foundItemsReducer'
-import { usersReducer } from '../reducers/usersReducer'
-import { isClosedReducer } from '../reducers/IsOpenedReducer'
-import { isLoadedReducer } from '../reducers/isLoadedDataReducer'
-import thunk from 'redux-thunk'
+import { foundNewsReducer } from '../reducers/foundNewsReducer'
 
 
 const rootReducer = combineReducers({
-    itemsReducer,
+    newsReducer,
     customerReducer,
     filterReducer,
     isSortedReducer,
-    foundItemsReducer,
-    usersReducer,
-    isClosedReducer,
-    isLoadedReducer
+    foundNewsReducer
 })
 
 
-export const store = legacy_createStore(rootReducer, applyMiddleware(thunk))
+export const store = legacy_createStore(rootReducer)

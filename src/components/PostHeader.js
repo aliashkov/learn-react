@@ -2,43 +2,42 @@ import React from 'react';
 import MyInput from './input/MyInput';
 import MyButton from './button/MyButton';
 import { useDispatch, useSelector } from "react-redux"
-import { seatchStringAction } from '../actions/filterAction';
-import { initialSortAction, isSortedAction } from '../actions/isSortedAction';
-import { postsSortAction } from '../actions/itemsAction';
 
 const PostHeader = (props) => {
     const dispatch = useDispatch();
     const filter = useSelector(state => state.filterReducer.filter)
-    const posts = useSelector(state => state.itemsReducer.items)
+    const posts = useSelector(state => state.newsReducer.news)
     const isSorted = useSelector(state => state.isSortedReducer.isSorted)
 
 
     const sortById = () => {
-        const sortedPosts = posts.sort((a, b) => {
-            if (a.title > b.title) {
-                return -1
-            } else if (a.title < b.title) {
-                return 1
-            } else {
-                return 0
-            }
+        dispatch({
+            type: "POSTS_SORT", payload: posts.sort((a, b) => {
+                if (a.title > b.title) {
+                    return -1
+                } else if (a.title < b.title) {
+                    return 1
+                } else {
+                    return 0
+                }
+            })
         })
-        dispatch(postsSortAction(sortedPosts))
-        dispatch(isSortedAction())
+        dispatch({ type: "IS_SORTED" })
     }
 
     const sortInitial = () => {
-        const sortedPosts = posts.sort((a, b) => {
-            if (a.title < b.title) {
-                return -1
-            } else if (a.title > b.title) {
-                return 1
-            } else {
-                return 0
-            }
+        dispatch({
+            type: "POSTS_SORT", payload: posts.sort((a, b) => {
+                if (a.title < b.title) {
+                    return -1
+                } else if (a.title > b.title) {
+                    return 1
+                } else {
+                    return 0
+                }
+            })
         })
-        dispatch(postsSortAction(sortedPosts))
-        dispatch(initialSortAction())
+        dispatch({ type: "INITIAL_SORT" })
     }
 
     const sortReverse = (isSorted) => {
@@ -56,6 +55,7 @@ const PostHeader = (props) => {
                 value={filter}
                 onChange={e => dispatch({ type: "CHANGE_FILTER", payload: e.target.value })}
             />
+            <MyButton onClick={() => { props.initialState(posts) }} > Сбросить состояния </MyButton>
             <MyButton onClick={() => { sortReverse(isSorted) }} > Сортировать </MyButton>
         </div>
     )
