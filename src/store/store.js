@@ -7,7 +7,7 @@ import { foundItemsReducer } from '../reducers/foundItemsReducer'
 import { usersReducer } from '../reducers/usersReducer'
 import { isClosedReducer } from '../reducers/IsOpenedReducer'
 import { isLoadedReducer } from '../reducers/isLoadedDataReducer'
-import { isLoginedReducer } from '../reducers/isLogined'
+import { isLoginedReducer } from '../reducers/isLoginedReducer'
 import thunk from 'redux-thunk'
 
 
@@ -22,6 +22,7 @@ const rootReducer = combineReducers({
     isLoadedReducer,
     isLoginedReducer
 })
+
 
 
 export const store = legacy_createStore(rootReducer, applyMiddleware(thunk))
