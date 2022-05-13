@@ -1,0 +1,50 @@
+.about {
+    margin: 0 auto;
+    width: 800px;
+    box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
+    border-radius: 20px;
+    text-align: center;
+    justify-content: center;
+}
+
+.text__header {
+    font-family: Georgia, serif;
+    font-size: 32px;
+    letter-spacing: 0px;
+    word-spacing: 0px;
+    color: #000000;
+    font-weight: 700;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: small-caps;
+    text-transform: none;
+    margin-bottom: 50px;
+}
+
+.main__logo {
+    margin: 50px 0;
+}
+
+.text__decription {
+    font-family: Georgia, serif;
+    font-size: 25px;
+    letter-spacing: 0px;
+    word-spacing: 0px;
+    color: #545454;
+    font-weight: 400;
+    text-decoration: none solid rgb(68, 68, 68);
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+    margin-bottom: 40px;
+}
+
+
+.image__container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    column-gap: 20px;
+    padding-bottom: 50px;
+}
