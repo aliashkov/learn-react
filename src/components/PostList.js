@@ -1,16 +1,18 @@
 import React from 'react';
 import PostNews from './PostNews';
+import { useSelector } from "react-redux"
 
 const PostList = (props) => {
-    console.log(props)
+    const foundNews = useSelector(state => state.foundNewsReducer.foundNews)
+
     return (
-        
+
         <div className='news__wrapper'>
             <h1 style={{ textAlign: 'center' }}>
                 {props.title}
             </h1>
-            {props.news.map((news, index) =>
-                <PostNews addVisibleValue={props.addVisibleValue} number={index + 1} news={news} key={news.id} />)
+            {foundNews.map((news, index) =>
+                <PostNews number={index + 1} news={news} key={news.id} />)
             }
         </div>
     )
