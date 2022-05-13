@@ -15,6 +15,7 @@ const Auth = (props) => {
     const [surname, setSurname] = useState('');
     const dispatch = useDispatch();
     const isLoaded = useSelector(state => state.isLoadedReducer.isLoadedUsers)
+    const isLogined = useSelector(state =>  state.isLoginedReducer.isLogined)
     const users = useSelector(state => state.usersReducer.users)
     const foundUser = users.find(user => user.id === 1)
     const navigate = useNavigate();
@@ -35,8 +36,10 @@ const Auth = (props) => {
     }
 
     const exit = () => {
-        alert('Пользователь успешно деаторизирован')
-        dispatch(userUnloginedAction())
+        if(isLogined) {
+            alert('Пользователь успешно деаторизирован')
+            dispatch(userUnloginedAction())
+        }
         navigate('/');
     }
 
