@@ -14,6 +14,7 @@ const Links = (props) => {
                         <li><Link to={'/admin'}>Admin items</Link></li>
                         <li><Link to={'/user'}>User items </Link></li>
                         <li><Link to={'/profile'}>Profile</Link></li>
+                        <li><Link to={'/auth'}>Auth</Link></li>
                     </ul>
                 </nav>
             </div>

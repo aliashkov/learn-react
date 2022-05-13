@@ -7,6 +7,7 @@ import { foundItemsReducer } from '../reducers/foundItemsReducer'
 import { usersReducer } from '../reducers/usersReducer'
 import { isClosedReducer } from '../reducers/IsOpenedReducer'
 import { isLoadedReducer } from '../reducers/isLoadedDataReducer'
+import { isLoginedReducer } from '../reducers/isLogined'
 import thunk from 'redux-thunk'
 
 
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
     foundItemsReducer,
     usersReducer,
     isClosedReducer,
-    isLoadedReducer
+    isLoadedReducer,
+    isLoginedReducer
 })
 
 

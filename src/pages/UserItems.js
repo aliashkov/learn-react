@@ -31,7 +31,7 @@ const UserItems = (props) => {
   React.useEffect(() => {
     const foundItems = [...posts].filter(post => post.title.toLowerCase().includes(filter.toLowerCase()))
     dispatch(foundPostsAction(foundItems))
-  }, [dispatch, filter, posts]);
+  }, [filter, posts]);
 
 
   return (

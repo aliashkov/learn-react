@@ -1,0 +1,18 @@
+.auth__input__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 0 80px 0;
+}
+
+.text__header {
+   text-align: center;
+   padding-top: 30px;
+}
+
+.auth__button__wrapper {
+    display: flex;
+    justify-content: center;
+    column-gap: 50px;
+    padding-bottom: 50px;
+}
