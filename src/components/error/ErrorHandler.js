@@ -10,7 +10,6 @@ const ErrorHander = ({ value, cardSymbols }) => {
             return title = 'Введите больше символов'
 
         }
-
         else if (value.length > cardSymbols) {
             return title = 'Введите меньше символов'
         }
@@ -26,9 +25,7 @@ const ErrorHander = ({ value, cardSymbols }) => {
 
 
 export default React.memo(ErrorHander, (prevState, nextState) => {
-    console.log(prevState.value.length)
-    console.log(nextState.value.length)
-    if ((nextState.value.length === 15) || (nextState.value.length === 16) || (nextState.value.length === 17))
+    if ((nextState.value.length >= 15) && (nextState.value.length <= 17))
         return false;
     return true;
 });
