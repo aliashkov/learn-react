@@ -20,6 +20,7 @@ const AppRoutes = (props) => {
                 <Route path="/profile" element={
                     <RequireAuth><Profile /></RequireAuth>
                 }/>
+                
                 <Route path="/auth" element={<Auth />} />
             </Routes>
         </>
