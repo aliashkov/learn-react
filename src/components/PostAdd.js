@@ -28,6 +28,7 @@ const PostAdd = (props) => {
     }
 
     const updatePosts = () => {
+        console.log(222)
         const id = props.idValue;
         const newArticle = {
             id,

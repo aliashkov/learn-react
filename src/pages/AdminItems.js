@@ -14,11 +14,9 @@ const AdminItems = (props) => {
 
   const dispatch = useDispatch();
   const posts = useSelector(state => state.itemsReducer.items)
-  console.log(posts)
   const filter = useSelector(state => state.filterReducer.filter)
   const isSorted = useSelector(state => state.isSortedReducer.isSorted)
   const isLoaded = useSelector(state => state.isLoadedReducer.isLoadedItems)
-  console.log(isLoaded)
 
   const initialState = (postsArticle) => {
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useState} from 'react';
 import UserChange from '../components/UserChange';
 import '../styles/Profile.css'
 import MyButton from '../components/button/MyButton';
@@ -11,8 +11,12 @@ import { Watch } from 'react-loader-spinner'
 
 
 
-const Profile = (props) => {
 
+const Profile = (props) => {
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
+  const [card, setCard] = useState('');
+  const [file, setFile] = useState('');
   const dispatch = useDispatch();
   const isClosed = useSelector(state => state.isClosedReducer.isClosed)
   const isLoaded = useSelector(state => state.isLoadedReducer.isLoadedUsers)
@@ -55,8 +59,7 @@ const Profile = (props) => {
                 <img className='user__logo' width="180px" height="180px" alt="img" src={foundUser.file}></img><div className='user__data'>
                   <div className='user__text'>Имя: {foundUser.name}</div>
                   <div className='user__text'>Фамилия: {foundUser.surname}</div>
-                  <div className='user__text'>Год: {foundUser.year}</div>
-                  <div className='user__text'>Номер паспорта: {foundUser.passwordNumber}</div>
+                  <div className='user__text'>Номер карты: {foundUser.card}</div>
                 </div>
               </>
               : <></>
@@ -71,11 +74,13 @@ const Profile = (props) => {
       }{
         (!isClosed)
           ? ''
-          : <UserChange />
+          : <UserChange cardSymbols={16} name={name}  setName={setName} surname={surname}  setSurname={setSurname} card={card} setCard={setCard} file={file} setFile={setFile}/>
       }
     </div >
 
   );
 }
 
+
 export default Profile;
+

@@ -7,7 +7,6 @@ import { changeVisibiltyAction, deleteItemAction } from '../actions/itemsAction'
 
 
 const PostItems = (props) => {
-
     const dispatch = useDispatch();
     const posts = useSelector(state => state.itemsReducer.items)
     const addVisibleValue = (id, visible) => {
@@ -53,6 +52,10 @@ const PostItems = (props) => {
     )
 }
 
-export default PostItems;
+export default React.memo(PostItems, (prevState, nextState) => {
+    if (prevState.posts.hidden !== nextState.posts.hidden)
+       return false;
+    return true;
+});
 
 
