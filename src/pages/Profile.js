@@ -21,7 +21,6 @@ const Profile = (props) => {
   const isClosed = useSelector(state => state.isClosedReducer.isClosed)
   const isLoaded = useSelector(state => state.isLoadedReducer.isLoadedUsers)
   const users = useSelector(state => state.usersReducer.users)
-  console.log(users)
   const foundUser = users.find(user => user.id === 1)
 
 

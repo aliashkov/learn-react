@@ -1,14 +1,14 @@
-import React, {useMemo, useState} from 'react';
+import React, { useMemo, useState } from 'react';
 import MyButton from './button/MyButton';
 import MyInput from './input/MyInput';
 import { useDispatch, useSelector } from "react-redux"
 import { changeUserAction } from '../actions/usersAction';
 import ErrorHander from './error/ErrorHandler';
 
-const UserChange = ({ cardSymbols, name, setName, surname, setSurname, file, setFile, card, setCard}) => {
+const UserChange = ({ cardSymbols, name, setName, surname, setSurname, file, setFile, card, setCard }) => {
     const users = useSelector(state => state.usersReducer.users)
     const dispatch = useDispatch();
-    
+
 
     const updateUser = () => {
         const newUser = {
@@ -33,29 +33,19 @@ const UserChange = ({ cardSymbols, name, setName, surname, setSurname, file, set
     }
 
     function memoizedValue(value, setValue, placeholderTitle) {
-        console.log(value);
-        if (placeholderTitle === 'Номер карты') {
-            return <><MyInput
-                value={value}
-                onChange={e => setValue(e.target.value)}
-                type="text"
-                placeholder={placeholderTitle}
-            />  <ErrorHander value={value}  cardSymbols={cardSymbols}/></>
-        }
-        else {
-            return <MyInput
-                value={value}
-                onChange={e => setValue(e.target.value)}
-                type="text"
-                placeholder={placeholderTitle}
-            />
-        }
+
+        return <><MyInput
+            value={value}
+            onChange={e => setValue(e.target.value)}
+            type="text"
+            placeholder={placeholderTitle}
+        /> {placeholderTitle === 'Номер карты' ? <ErrorHander value={value} cardSymbols={cardSymbols} /> : <></>}</>
+
     }
 
     const memoizedName = useMemo(() => memoizedValue(name, setName, 'Имя'), [name])
     const memoizedSurname = useMemo(() => memoizedValue(surname, setSurname, 'Фамилия'), [surname])
     const memoizedCard = useMemo(() => memoizedValue(card, setCard, 'Номер карты'), [card])
-    
     const memoizedFile = useMemo(() => memoizedValue(file, setFile, 'URL аватара'), [file])
 
 
@@ -67,7 +57,6 @@ const UserChange = ({ cardSymbols, name, setName, surname, setSurname, file, set
                     {memoizedName}
                     {memoizedSurname}
                     {memoizedCard}
-                    
                     {memoizedFile}
                 </div>
                 <div className='button__wrapper'>
