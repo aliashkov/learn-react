@@ -9,21 +9,31 @@ import { foundPostsAction } from '../actions/foundItemsAction';
 import { initialStateAction, postsSortAction } from '../actions/itemsAction';
 import { fetchItems } from '../serivces/items';
 import { Watch } from 'react-loader-spinner'
+import MyButton from '../components/button/MyButton';
+import { sortedPostsAction, sortByAmountAction } from '../actions/sortedItemsAction';
+import { useEffect } from 'react';
+import ButtonsSort from '../components/ButtonsSort';
+import { useState } from 'react';
 
-const AdminItems = (props : any) => {
+
+const AdminItems = (props: any) => {
 
   const dispatch = useDispatch();
 
-  const posts : any = useSelector<{ state : any , itemsReducer: any }>(state => state.itemsReducer.items);
-  const filter : any = useSelector<{ state : any , filterReducer: any }>(state => state.filterReducer.filter);
-  const isLoaded : any = useSelector<{ state : any , isLoadedReducer: any , isLoadedItems : any }>(state => state.isLoadedReducer.isLoadedItems);
-  const isSorted : any = useSelector<{ state : any , isSortedReducer: any }>(state => state.isSortedReducer.isSorted);
+  const [isClickedSort, setIsClickedSort] = useState(false);
 
+  const posts: any = useSelector<{ state: any, itemsReducer: any }>(state => state.itemsReducer.items);
+  const filter: any = useSelector<{ state: any, filterReducer: any }>(state => state.filterReducer.filter);
+  const isLoaded: any = useSelector<{ state: any, isLoadedReducer: any, isLoadedItems: any }>(state => state.isLoadedReducer.isLoadedItems);
+  const isSorted: any = useSelector<{ state: any, isSortedReducer: any }>(state => state.isSortedReducer.isSorted);
 
-  const initialState = (postsArticle : object) => {
+  const sortedPostsAmount: any = useSelector<{ state: any, sortedItemsReducer: any }>(state => state.sortedItemsReducer.sortedItems);
+  console.log(posts)
 
+  const initialState = (postsArticle: object) => {
+    console.log(isLoaded)
     if (isSorted) {
-      const sortedPosts = posts.sort((a : any, b : any) => {
+      const sortedPosts = posts.sort((a: any, b: any) => {
         if (a.title < b.title) {
           return -1
         } else if (a.title > b.title) {
@@ -36,7 +46,7 @@ const AdminItems = (props : any) => {
       dispatch(initialSortAction())
     }
     dispatch(seatchStringAction(''));
-    const initialPosts = posts.map((posts : object, index : number) => (
+    const initialPosts = posts.map((posts: object, index: number) => (
       (index === 0) ? { ...posts, hidden: false } : { ...posts, hidden: true }
     ))
     dispatch(initialStateAction(initialPosts))
@@ -49,10 +59,50 @@ const AdminItems = (props : any) => {
   }, []);
 
 
+
   React.useEffect(() => {
-    const foundItems = [...posts].filter(post => post.title.toLowerCase().includes(filter.toLowerCase()))
-    dispatch(foundPostsAction(foundItems))
-  }, [filter, posts]);
+    dispatch(foundPostsAction([...posts]))
+  }, [isClickedSort , posts]);
+
+  const sortIncrementByAmount = () => {
+    const sortedPostsByAmount = posts.sort((a: any, b: any) => {
+      if (a.amountPosts < b.amountPosts) {
+        return -1
+      } else if (a.amountPosts > b.amountPosts) {
+        return 1
+      } else {
+        return 0
+      }
+    });
+    const initialPosts = sortedPostsByAmount.map((posts: object, index: number) => (
+      (index === 0) ? { ...posts, hidden: false } : { ...posts, hidden: true }
+    ))
+    dispatch(sortedPostsAction(initialPosts))
+    dispatch(sortByAmountAction())
+    dispatch(foundPostsAction(initialPosts))
+    setIsClickedSort(!isClickedSort)
+
+  }
+
+  const sortDecrementByAmount = () => {
+    const sortedPostsByAmount = posts.sort((a: any, b: any) => {
+      if (a.amountPosts > b.amountPosts) {
+        return -1
+      } else if (a.amountPosts < b.amountPosts) {
+        return 1
+      } else {
+        return 0
+      }
+    });
+    const initialPosts = sortedPostsByAmount.map((posts: object, index: number) => (
+      (index === 0) ? { ...posts, hidden: false } : { ...posts, hidden: true }
+    ))
+    dispatch(sortedPostsAction(initialPosts))
+    dispatch(sortByAmountAction())
+    dispatch(foundPostsAction(initialPosts))
+    setIsClickedSort(!isClickedSort)
+  }
+
 
 
   return (
@@ -60,11 +110,15 @@ const AdminItems = (props : any) => {
     <div className='App'>
       {(isLoaded)
         ? <>
+          <div className='buttons__form'>
+            <MyButton onClick={sortIncrementByAmount} > По возрастанию </MyButton>
+            <MyButton onClick={sortDecrementByAmount} > По убыванию </MyButton>
+          </div>
           <PostAdd />
           <PostList title='Новости' admin={props.admin} />
         </>
         : <div className='watch'>
-          <Watch 
+          <Watch
             height="250"
             width="250"
             color='black'

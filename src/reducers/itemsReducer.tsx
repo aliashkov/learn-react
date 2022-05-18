@@ -4,7 +4,7 @@ const defaultStore = {
 }
 
 
-export const itemsReducer = (state = defaultStore, action : any) => {
+export const itemsReducer = (state = defaultStore, action: any) => {
     switch (action.type) {
         case "INITIAL_STATE":
             return { ...state, items: action.payload }
@@ -19,7 +19,11 @@ export const itemsReducer = (state = defaultStore, action : any) => {
         case "CHANGE_POST":
             return { ...state, items: action.payload }
         case "GET_ALL_POSTS":
-            return {...state , items : action.payload}
+            return { ...state, items: action.payload }
+        case "ADD_ITEM_TO_CARD":
+            return { ...state, items: action.payload }
+        case "DELETE_ITEM_TO_CARD":
+            return { ...state, items: action.payload }
         default:
             return state
     }

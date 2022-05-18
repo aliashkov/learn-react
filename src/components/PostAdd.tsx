@@ -21,6 +21,7 @@ const PostAdd = (props : any) => {
             body,
             cost,
             file,
+            amountPosts : 0,
             hidden: true
         }
         dispatch(addPostAction(newArticle))
@@ -36,6 +37,7 @@ const PostAdd = (props : any) => {
             body,
             cost,
             file,
+            amountPosts : 0,
             hidden: true
         }
         const changePosts =[...posts].map((posts, index) => (

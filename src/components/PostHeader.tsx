@@ -2,7 +2,6 @@ import React from 'react';
 import MyInput from './input/MyInput';
 import MyButton from './button/MyButton';
 import { useDispatch, useSelector } from "react-redux"
-import { seatchStringAction } from '../actions/filterAction';
 import { initialSortAction, isSortedAction } from '../actions/isSortedAction';
 import { postsSortAction } from '../actions/itemsAction';
 
@@ -58,7 +57,6 @@ const PostHeader = (props : any) => {
                 value={filter}
                 onChange={(e : any) => dispatch({ type: "CHANGE_FILTER", payload: e.target.value })}
             />
-            <MyButton onClick={() => { sortReverse(isSorted) }} > Сортировать </MyButton>
         </div>
     )
 }
