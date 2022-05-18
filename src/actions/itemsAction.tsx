@@ -1,0 +1,7 @@
+export const initialStateAction = (payload : any) => ({type : "INITIAL_STATE", payload})
+export const postsSortAction = (payload : any) => ({type : "POSTS_SORT" , payload})
+export const changeVisibiltyAction = (payload : any) => ({type : "CHANGE_VISIBILITY", payload})
+export const addPostAction = (payload : any) => ({type : "ADD_POST" , payload})
+export const deleteItemAction = (payload : any) => ({type : "DELETE_ITEM", payload})
+export const changePostAction = (payload : any) => ({type : "CHANGE_POST" , payload})
+export const getItemsAction = (payload : any) => ({type : "GET_ALL_POSTS" , payload})
