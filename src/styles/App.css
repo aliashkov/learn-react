@@ -50,6 +50,7 @@
 }
 
 .create__wrapper {
+    position: relative;
     margin: 15px 0;
     border: 3px solid rgba(0, 0, 0, .125);
     border-radius: 25px;
@@ -145,12 +146,19 @@ nav ul li a:hover {
     margin-bottom: 15px;
 }
 
-.posts__main{
+.posts__main {
     display: flex;
 }
 
-.watch{
+.watch {
     padding: 100px 0;
     display: flex;
     justify-content: center;
+}
+
+
+.error_handler {
+    position: absolute;
+    top: 131px;
+    left: 70%;
 }
