@@ -11,8 +11,6 @@ import { fetchItems } from '../serivces/items';
 import { Watch } from 'react-loader-spinner'
 import MyButton from '../components/button/MyButton';
 import { sortedPostsAction, sortByAmountAction } from '../actions/sortedItemsAction';
-import { useEffect } from 'react';
-import ButtonsSort from '../components/ButtonsSort';
 import { useState } from 'react';
 
 
@@ -23,11 +21,9 @@ const AdminItems = (props: any) => {
   const [isClickedSort, setIsClickedSort] = useState(false);
 
   const posts: any = useSelector<{ state: any, itemsReducer: any }>(state => state.itemsReducer.items);
-  const filter: any = useSelector<{ state: any, filterReducer: any }>(state => state.filterReducer.filter);
   const isLoaded: any = useSelector<{ state: any, isLoadedReducer: any, isLoadedItems: any }>(state => state.isLoadedReducer.isLoadedItems);
   const isSorted: any = useSelector<{ state: any, isSortedReducer: any }>(state => state.isSortedReducer.isSorted);
 
-  const sortedPostsAmount: any = useSelector<{ state: any, sortedItemsReducer: any }>(state => state.sortedItemsReducer.sortedItems);
   console.log(posts)
 
   const initialState = (postsArticle: object) => {

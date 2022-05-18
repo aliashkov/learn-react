@@ -7,7 +7,6 @@ import { initialStateAction } from '../actions/itemsAction';
 import { foundPostsAction } from '../actions/foundItemsAction';
 import { fetchItems } from '../serivces/items';
 import { Watch } from 'react-loader-spinner'
-import { useState } from 'react';
 
 const UserItems = (props: any) => {
 
