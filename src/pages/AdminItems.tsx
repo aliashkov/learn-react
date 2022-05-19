@@ -24,7 +24,6 @@ const AdminItems = (props: any) => {
   const isLoaded: any = useSelector<{ state: any, isLoadedReducer: any, isLoadedItems: any }>(state => state.isLoadedReducer.isLoadedItems);
   const isSorted: any = useSelector<{ state: any, isSortedReducer: any }>(state => state.isSortedReducer.isSorted);
 
-  console.log(posts)
 
   const initialState = (postsArticle: object) => {
     console.log(isLoaded)
@@ -70,7 +69,6 @@ const AdminItems = (props: any) => {
         return 0
       }
     });
-    console.log(sortedPostsByAmount)
     initialState(sortedPostsByAmount);
     dispatch(sortedPostsAction(sortedPostsByAmount))
     dispatch(sortByAmountAction())
@@ -89,7 +87,6 @@ const AdminItems = (props: any) => {
         return 0
       }
     });
-    console.log(sortedPostsByAmount)
     initialState(sortedPostsByAmount);
     dispatch(sortedPostsAction(sortedPostsByAmount))
     dispatch(sortByAmountAction())

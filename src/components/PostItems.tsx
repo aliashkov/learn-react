@@ -26,12 +26,15 @@ const PostItems = (props: any) => {
         const addItem = [...posts].map((posts, index) => ((posts.id === id) ? { ...posts, amountPosts: 1 } : { ...posts }));
         dispatch(addItemToCard(addItem))
     }
+    [...posts].map((posts, index) => ((posts.id === props.id) ? { ...posts, amountPosts: 1 } : { ...posts }));
 
-    console.log(props.number)
-    if (posts[props.number - 1].amountPosts > 0){
-        buttonTitle = 'Добавлено'
-    } else {
-        buttonTitle = 'Добавить в корзину'
+    if ( posts.includes(posts[props.number - 1])){
+        if (posts[props.number - 1].amountPosts > 0){
+            buttonTitle = 'Добавлено'
+        } else {
+            buttonTitle = 'Добавить в корзину'
+        }
+    
     }
 
 

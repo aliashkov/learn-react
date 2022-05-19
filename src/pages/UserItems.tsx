@@ -24,7 +24,6 @@ const UserItems = (props: any) => {
   });
   const filter: any = useSelector<{ state: any, filterReducer: any }>(state => state.filterReducer.filter);
   const isLoaded: any = useSelector<{ state: any, isLoadedReducer: any, isLoadedItems: any }>(state => state.isLoadedReducer.isLoadedItems);
-  console.log(posts)
 
 
   const initialState = (postsArticle: object) => {
