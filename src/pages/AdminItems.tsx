@@ -70,12 +70,11 @@ const AdminItems = (props: any) => {
         return 0
       }
     });
-    const initialPosts = sortedPostsByAmount.map((posts: object, index: number) => (
-      (index === 0) ? { ...posts, hidden: false } : { ...posts, hidden: true }
-    ))
-    dispatch(sortedPostsAction(initialPosts))
+    console.log(sortedPostsByAmount)
+    initialState(sortedPostsByAmount);
+    dispatch(sortedPostsAction(sortedPostsByAmount))
     dispatch(sortByAmountAction())
-    dispatch(foundPostsAction(initialPosts))
+    dispatch(foundPostsAction(sortedPostsByAmount))
     setIsClickedSort(!isClickedSort)
 
   }
@@ -90,12 +89,11 @@ const AdminItems = (props: any) => {
         return 0
       }
     });
-    const initialPosts = sortedPostsByAmount.map((posts: object, index: number) => (
-      (index === 0) ? { ...posts, hidden: false } : { ...posts, hidden: true }
-    ))
-    dispatch(sortedPostsAction(initialPosts))
+    console.log(sortedPostsByAmount)
+    initialState(sortedPostsByAmount);
+    dispatch(sortedPostsAction(sortedPostsByAmount))
     dispatch(sortByAmountAction())
-    dispatch(foundPostsAction(initialPosts))
+    dispatch(foundPostsAction(sortedPostsByAmount))
     setIsClickedSort(!isClickedSort)
   }
 
