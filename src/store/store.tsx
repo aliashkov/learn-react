@@ -8,6 +8,9 @@ import { usersReducer } from '../reducers/usersReducer'
 import { isClosedReducer } from '../reducers/IsOpenedReducer'
 import { isLoadedReducer } from '../reducers/isLoadedDataReducer'
 import { isLoginedReducer } from '../reducers/isLoginedReducer'
+import { isAdminReducer } from '../reducers/isAdminReducer'
+import { cardItemsReducer } from '../reducers/cardItemsReducer'
+import { sortedItemsReducer } from '../reducers/sortedItemsReducer'
 import thunk from 'redux-thunk'
 
 
@@ -20,7 +23,10 @@ const rootReducer = combineReducers({
     usersReducer,
     isClosedReducer,
     isLoadedReducer,
-    isLoginedReducer
+    isLoginedReducer,
+    isAdminReducer,
+    cardItemsReducer,
+    sortedItemsReducer
 })
 
 

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import  { useMemo } from 'react';
 import MyButton from './button/MyButton';
 import MyInput from './input/MyInput';
 import { useDispatch, useSelector } from "react-redux"
@@ -8,7 +8,7 @@ import ErrorHander from './error/ErrorHandler';
 const UserChange = ({ cardSymbols, name, setName, surname, setSurname, file, setFile, card, setCard } : any) => {
     const users : any = useSelector<{ state : any , usersReducer: any }>(state => state.usersReducer.users);
     const dispatch = useDispatch();
-
+    
 
     const updateUser = () => {
         const newUser = {

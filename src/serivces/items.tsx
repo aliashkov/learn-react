@@ -7,9 +7,8 @@ export const fetchItems = () => {
             .then(response => response.json())
             .then(json => {
                 const initialPosts = json.map((posts : Object, index : Number) => (
-                    (index === 0) ? { ...posts, hidden: false } : { ...posts, hidden: true }
+                    (index === 0) ? { ...posts, hidden: false, amountPosts : 0} : { ...posts, hidden: true, amountPosts : 0 }
                 ))
-                console.log('5555')
                 dispatch(getItemsAction(initialPosts))
                 dispatch(loadedDataItemsAction())
             })
